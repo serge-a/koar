@@ -1,0 +1,34 @@
+{
+    "items": {
+        "0": {
+            "loc": "Gorhart", 
+            "vendor": "Rikka Egest", 
+            "minfo": "iin The Corner Shop"
+        }, 
+        "1": {
+            "loc": "City of Ysa", 
+            "vendor": "Riona Helt", 
+            "minfo": "in Asker's Alley"
+        }, 
+        "2": {
+            "loc": "Rathir's", 
+            "vendor": "Wil Donall", 
+            "minfo": "in Upper City - in Scholia Arcana"
+        }, 
+        "3": {
+            "loc": " Adessa", 
+            "vendor": "Senecer Macit", 
+            "minfo": "Domus Politica"
+        }, 
+        "4": {
+            "loc": " Mel Senshir", 
+            "vendor": "Illyn Doldran", 
+            "minfo": "he's the trader nearest the jail"
+        }, 
+        "5": {
+            "loc": "Idylla*", 
+            "vendor": "Ampelio", 
+            "minfo": "the Kollossae horticultural giantess, sells one in the Teeth of Naros DLC"
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "items": {
+        "1": {
+            "Boo": false, 
+            "Mage": true, 
+            "PoisonIvy": true
+        }, 
+        "0": {
+            "Boo": false, 
+            "Mage": true, 
+            "PoisonIvy": false
+        }, 
+        "3": {
+            "Boo": false, 
+            "Mage": true, 
+            "PoisonIvy": false
+        }, 
+        "2": {
+            "Boo": false, 
+            "Mage": true, 
+            "PoisonIvy": false
+        }, 
+        "5": {
+            "Boo": false, 
+            "Mage": false, 
+            "PoisonIvy": false
+        }, 
+        "4": {
+            "Boo": false, 
+            "Mage": true, 
+            "PoisonIvy": false
+        }
+    }
+}
