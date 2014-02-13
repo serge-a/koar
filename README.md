@@ -1,10 +1,49 @@
 koar
 ====
 
-petit project personelle pour le suivi de choses faites dans un jeux
+petit project personelle pour le suivi de choses faites dans un jeux (Kingdom Of Amalur: Reckoning)
 
-run with flask
+Liste des trainers pour les Skills/Profession: nom profession, nom traineur, lieu, range du skill, liste de jouer que vou voulez suivre.
+Liste emplacement d<upgrade pour les bags.
 
-this projet use extjs 4.2.1
-place the files (or a symlink) in static/LIBS/extjs
-eg. static/LIBS/extjs/*.* OR static/LIBS/ [symlink name extjs here]
+INSTALLATION:
+==============================================
+
+besoin installer: flask
+
+liens vers flask app: http://flask.pocoo.org/docs/installation/
+(info: http://flask.pocoo.org/docs/quickstart/)
+
+
+besoin lib: (SDK) Sencha Ext Js 4.2.1
+
+liens pour telecharger: http://www.sencha.com/products/extjs/download/ext-js-4.2.1/2281
+
+
+    placer les fichiers (ou un symlink) dans static/LIBS/
+        eg. static/LIBS/extjs/*.* 
+            OU
+            static/LIBS/ [symlink dans ce rep et nommer le extjs]
+
+Vous etes pret
+
+
+FEATURES:
+==========================
+
+TODO:
+
+Gerer les joueurs:
+    Ajouter
+    Renommer
+    Supprimer
+
+
+DONE:
+Gerer les infos trainers.
+    Save / update des infos de traineurs
+    Save / update du status du joueur pour chaque skill
+    
+Liste emplacements des bags upgrade (extension de place inventaire)
+    Save / update info des vendor bags
+    Save / update du status du joueur (s) pour chaque bags
