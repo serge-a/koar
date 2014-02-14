@@ -7,7 +7,6 @@ function init(){
     Ext.define('MenuButton', {
         extend: 'Ext.button.Button',
         alias: 'widget.menubutton',
-        // pourrait ajouter mouseout et fade animation
         listeners: {
             'mouseover': {
                 fn: function(btn, e){
@@ -20,7 +19,7 @@ function init(){
             },
             "mouseout": {
                 fn: function(btn, e){
-                    App.timer = setTimeout(function(){btn.hideMenu(); App.timer = null;}, 1000);
+                    App.timer = setTimeout(function(){btn.hideMenu(); App.timer = null;}, 500);
                     App.timerBtnText = ''; // WHY? because menu mouseLeave occur after btn mouseOver !!!
                 }
             }
@@ -80,8 +79,7 @@ function genGrid(st, cols, tbar){
     
     return Ext.create('Ext.grid.Panel', {
         itemId: 'SkillsInfos',
-        cls: 'g-trainer',
-        bodyStyle: 'background-color: pink;',
+        //cls: 'g-trainer',
         tbar: tbar,
         store: st,
         columns: cols,
@@ -95,7 +93,7 @@ function genGrid(st, cols, tbar){
         listeners: {
             afterrender: {
                 fn: function(grid){
-                    //adjust col header width to fit content for 3 first players
+                    //adjust col header width to fit content
                     var cols = grid.columns;
                     var len = cols.length;
                     setTimeout(function(){
@@ -106,9 +104,14 @@ function genGrid(st, cols, tbar){
                         grid.update();
                     }, 0);
                 }
+            },
+            beforedestroy: {
+                fn: function(grid){
+                    if(grid.bagWindow)
+                       grid.bagWindow.destroy();
+                }
             }
-        }/*,
-        style: 'border: 10px solid gray; border-radius: 25px;'*/
+        }
     });
 }
 
@@ -124,7 +127,7 @@ function genTBar(comboStoreFields){
                 enableToggle: true,
                 margin: '0 0 0 15px',
                 toggleHandler: function(btn, pressed){
-                    var grid = Ext.ComponentQuery.query('gridpanel')[0];
+                    var grid = btn.up('gridpanel');
                     if(grid.bagWindow){
                         if (pressed){
                             // show window
@@ -136,8 +139,8 @@ function genTBar(comboStoreFields){
                         }
                     }
                     else{
-                        grid.bagWindow = Ext.create('BagWindow');// ref to this button to togglehim when window is reduce
-                        grid.bagWindow.btn = btn;
+                        grid.bagWindow = Ext.create('BagWindow'); // ref to this window to destroy it when grid reconfigure is run, end for toggle when button pressed state chnage
+                        grid.bagWindow.btn = btn; // ref to this button to togglehim when window is reduce
                         // add the grid
                         grid.bagWindow.addGrid();
                         grid.bagWindow.show();
@@ -146,8 +149,9 @@ function genTBar(comboStoreFields){
             },
             {
                 xtype: 'menubutton', //'button',
-                text: 'Gestion joueurs',
+                text: 'Gestion des joueurs',
                 margin: "0 0 0 10px",
+                padding: '8 10 7 10',
                 menu: {
                     plain: true,
                     listeners: {
@@ -161,7 +165,7 @@ function genTBar(comboStoreFields){
                             fn: function(menu, e){
                                 var btn = menu.up('button');
                                 if(App.timerBtnText != btn.getText()){ // WHY? because menu mouseLeave occur after btn mouseOver !!!
-                                    App.timer = setTimeout(function(){btn.hideMenu(); App.timer = null;}, 1000);
+                                    App.timer = setTimeout(function(){btn.hideMenu(); App.timer = null;}, 500);
                                 }
                             }
                         }
@@ -169,6 +173,8 @@ function genTBar(comboStoreFields){
                     items: [{
                         text: "Ajouter un joueur",
                         plain: true,
+                        margin: 3,
+                        padding: 3,
                         style: 'text-align: center;',
                         handler: function(btn){
                             Ext.Msg.show({
@@ -183,6 +189,22 @@ function genTBar(comboStoreFields){
                                     else
                                         addPlayer(textValue);
                                 }
+                            });
+                        }
+                    },{
+                        text: "Effacer un joueur",
+                        plain: true,
+                        margin: 3,
+                        padding: 3,
+                        style: 'text-align: center;',
+                        handler: function(btn){
+                            var win = Ext.create('DeletePlayerMsgBox');
+                            win.on('close', function(w){
+                                if(w.btnClicked == "ok"){
+                                    if(w.fieldValue !== "")
+                                        removePlayer(w.fieldValue);
+                                }
+                                // else ! nothing todo
                             });
                         }
                     }]
@@ -265,7 +287,7 @@ function genColumnModel(fields){
     columnModel.forEach(function(v, i, a){
         if(v.text === "id"){
             v.hidden = true;
-            delete v.editor;
+            v.editor.xtype = 'displayfield';
             v.toString = function(){return 'zzzz0';}; // use by sort function for array of object!
             return;
         }
@@ -305,7 +327,7 @@ function genColumnModel(fields){
             }
         };
         v.toString = function(){return v.text};
-        delete v.editor;
+        v.editor.xtype = 'displayfield';
     });
     
     columnModel.sort();
@@ -404,7 +426,7 @@ function addPlayer(name){
                 "Voulez-vous entrez un autre nom?"
             ].join(''),
             buttons: Ext.Msg.YESNO,
-            icon: Ext.MessageBox.ERROR, //Ext.MessageBox.WARNING, // 
+            icon: Ext.MessageBox.ERROR, 
             fn: function(val){
                 if(val == "cancel" || val == "no"){
                     return;
@@ -439,9 +461,115 @@ function addPlayer(name){
             success: function(rep){
                 var r = JSON.parse(rep.responseText);
                 console.log(r);
+                // only need to reconfigure the grid if add player name work, need to verify responseText object for that
+                if(r["success"])
+                    reconfigureGrid();
+                // TODO show a message box with succes message
             }
         });
     }
-    
 }
 
+function removePlayer(name){
+    console.log(name);
+    Ext.Ajax.request({
+        url: 'delPlayer',
+        params: {
+            name: name
+        },
+        success: function(rep){
+            var j = JSON.parse(rep.responseText);
+            console.log(j);
+            // only need to reconfigure the grid if del player name work, need to verify responseText object for that
+            if(j["success"])
+                reconfigureGrid();
+                // TODO show a message box with succes message
+        }
+    });
+}
+
+Ext.define('DeletePlayerMsgBox', {
+    extend: 'Ext.window.Window',
+    alias: 'widget.delete-player-msg-box',
+    cls: 'autoFitWindow',
+    modal: true,
+    autoShow: true,
+    width: 250,
+    height: 103,
+    title: 'Effacer un joueur',
+    //layout: {type: 'hbox', pack: 'center'},
+    layout: 'anchor',
+    initComponent: function(){
+        var win = this;
+        var names = [];
+        var grid = q('gridpanel[itemId=SkillsInfos]')[0];
+        var st = grid.getStore();
+        rec = st.getAt(0);
+        for (name in rec.raw){
+            if(name != 'id' && name != "range" && name != "loc" && name != "profession" && name != "trainer" && name != "minfo")
+                names.push(name);
+        }
+        names.sort();
+        
+        this.items = [{
+            xtype: 'combobox',
+            margin: "10 25",
+            anchor: '100%',
+            align: 'center',
+            emptyText: 'Choisir un nom',
+            store: names,
+            displayValue: 'val',
+            displayField: 'val',
+            queryMode: 'local',
+            forceSelection: true,
+            name: 'delPlayer'
+        }]
+        this.callParent(arguments);
+    },
+    'buttons': [
+    '->',{
+        text: 'OK',
+        handler: function(btn){
+            var w = btn.up('delete-player-msg-box');
+            w.btnClicked = 'ok';
+            w.fieldValue = w.down('combobox').getRawValue();
+            w.close();
+        }
+    },{
+        text: 'Cancel',
+        handler: function(btn){
+            var w = btn.up('delete-player-msg-box');
+            w.btnClicked = 'cancel';
+            w.fieldValue = ""; // pourrait le recuperre et le retourner mais aucun sens selon moi.
+            w.close();
+        }
+    },
+    '->']
+    
+});
+
+function reconfigureGrid(){
+    // reconfigure the grid
+    Ext.Ajax.request({
+        url: '/gStore_SkillsTrained',
+        success: function(rep){
+            var obj = JSON.parse(rep.responseText);
+            //console.log(obj);
+            
+            var cols = genColumnModel(obj.fields); // only require fields to be generated
+            
+            var store = genStore(obj.fields, obj.datas);
+            
+            var vp = Ext.getCmp('vp');
+            vp.removeAll(); // no choice, cant find a way to change the grid store and column model! grid.reconfigure bugged
+            var fields = [];
+            for(var i = 0; i < obj.fields.length; i++){
+                if(obj.fields[i] !== 'id' && obj.fields[i] !== 'range')
+                    fields.push(obj.fields[i]);
+            }
+            var tbar = genTBar(fields); // fields for the combobox store.
+            
+            vp.add(genGrid(store, cols, tbar));
+        }
+    });
+}

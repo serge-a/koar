@@ -101,6 +101,7 @@ Ext.define('BagWindow', {
     closeAction: 'hide',
     minimizable: true,
     maximizable: true,
+    resizable: false,
     width: 800,
     height: 250,
     listeners: {
