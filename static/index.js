@@ -1,4 +1,5 @@
 function init(){
+    Ext.ns('App');
     /* require flask and ext 4.2 */
     // Alias
     q = function(sel){return Ext.ComponentQuery.query(sel);};
@@ -11,6 +12,16 @@ function init(){
             'mouseover': {
                 fn: function(btn, e){
                     btn.showMenu({btn: btn, e: e});
+                    App.timerBtnText = btn.getText();
+                    if(App.timer != null)
+                        clearTimeout(App.timer);
+                        App.timer = null;
+                }
+            },
+            "mouseout": {
+                fn: function(btn, e){
+                    App.timer = setTimeout(function(){btn.hideMenu(); App.timer = null;}, 1000);
+                    App.timerBtnText = ''; // WHY? because menu mouseLeave occur after btn mouseOver !!!
                 }
             }
         }
@@ -139,6 +150,22 @@ function genTBar(comboStoreFields){
                 margin: "0 0 0 10px",
                 menu: {
                     plain: true,
+                    listeners: {
+                        'mouseover': {
+                            fn: function(menu, e){
+                                clearTimeout(App.timer);
+                                App.timer = null;
+                            }
+                        },
+                        "mouseleave": {
+                            fn: function(menu, e){
+                                var btn = menu.up('button');
+                                if(App.timerBtnText != btn.getText()){ // WHY? because menu mouseLeave occur after btn mouseOver !!!
+                                    App.timer = setTimeout(function(){btn.hideMenu(); App.timer = null;}, 1000);
+                                }
+                            }
+                        }
+                    },
                     items: [{
                         text: "Ajouter un joueur",
                         plain: true,
