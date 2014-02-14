@@ -1,5 +1,8 @@
 function init(){
     /* require flask and ext 4.2 */
+    // Alias
+    q = function(sel){return Ext.ComponentQuery.query(sel);};
+    
     Ext.define('MenuButton', {
         extend: 'Ext.button.Button',
         alias: 'widget.menubutton',
@@ -13,16 +16,10 @@ function init(){
         }
     });
     
-    /*sm = Ext.define('SkillsModel', {
-        proxy: {
-            type: 'ajax',
-            url: '/gStore_SkillsTrained?fields=1',
-            reader: {
-                type: 'json',
-                root: 'fields'
-            }
-        }
-    });*/
+    Ext.create('Ext.container.Viewport', {
+        layout: 'fit',
+        id: 'vp'
+    });
     
     Ext.Ajax.request({
         url: '/gStore_SkillsTrained',
@@ -30,165 +27,188 @@ function init(){
             var obj = JSON.parse(rep.responseText);
             //console.log(obj);
             
-            var columnModel = genColumnModel(obj.fields); // only require fields to be generated
+            var cols = genColumnModel(obj.fields); // only require fields to be generated
             
-            // toolbar filter object
+            // toolbar filter object (combobox)
             var fields = [];
             for(var i = 0; i < obj.fields.length; i++){
                 if(obj.fields[i] !== 'id' && obj.fields[i] !== 'range')
                     fields.push(obj.fields[i]);
             }
             
-            var bar = Ext.create('Ext.toolbar.Toolbar', {
-                dock: 'bottom',
-                cls: 'myToolbarGray',
-                height: 40,
-                items: [
-                    {
-                        xtype: 'menubutton', //'button',
-                        text: 'Gestion joueurs',
-                        margin: "0 0 0 10px",
-                        menu: {
-                            plain: true,
-                            items: [{
-                                text: "Ajouter un joueur",
-                                plain: true,
-                                style: 'text-align: center;',
-                                handler: function(btn){
-                                    Ext.Msg.show({
-                                        title: 'Ajouter un joueur',
-                                        msg: 'Entrez un nom:',
-                                        buttons: Ext.Msg.OKCANCEL,
-                                        icon: Ext.Msg.QUESTION,
-                                        prompt: true,
-                                        fn: function(btnValue, textValue){
-                                            if(btnValue == "cancel")
-                                                return;
-                                            else
-                                                addPlayer(textValue);
-                                        }
-                                    });
-                                }
-                            }]
-                        }
-                    },
-                    '->',
-                    {xtype: 'label', text:"SKILLS TRAINERS INFOS", cls: 'title'},
-                    '->',
-                    
-                    {
-                        xtype: 'combobox',
-                        emptyText: 'Choose a column',
-                        name: 'colFilter',
-                        store: fields,
-                        forceSelection: true,
-                        queryMode: 'local',
-                        displayField: 'val',
-                        valueField: 'val'
-                    },
-                    {
-                        xtype: 'textfield',
-                        emptyText: 'value to be filtered',
-                        name: 'rowFilter',
-                    },
-                    {
-                        xtype: 'button',
-                        text: 'Filtrer',
-                        handler: function(btn){
-                            var t1 = btn.up('toolbar').down('[name=colFilter]');
-                            var t1v = t1.getValue();
-                            console.log(t1, t1v);
-                            if(t1v == null){
-                                return
-                            }
-                            var t2 = btn.up('toolbar').down('[name=rowFilter]');
-                            var t2v = t2.getValue();
-                            console.log(t2, t2v);
-                            var st = btn.up('gridpanel').getStore();
-                            // first cler precedent filtering
-                            st.clearFilter();
-                            st.filter(t1v,t2v);
-                        }
-                    },
-                    {
-                        xtype: 'button',
-                        text: 'clear filtering',
-                        handler: function(btn){
-                            btn.up('gridpanel').getStore().clearFilter();
-                            btn.up('toolbar').down('[name=colFilter]').clearValue();
-                            btn.up('toolbar').down('[name=rowFilter]').reset();
-                        },
-                        margin: '0 15px 0 0'
-                    }
-                ]
-            });
+            var bar = genTBar(fields); // fields for the combobox store.
             
-            //console.log(columnModel);
-            Ext.define('Unmodel', {
-                extend: 'Ext.data.Model',
-                fields: obj.fields
-            });
+            var store = genStore(obj.fields, obj.datas);
             
-            var store = Ext.create('Ext.data.Store', {
-                //fields: obj.fields,
-                model: 'Unmodel',
-                data: obj.datas,
-                groupField: 'range',
-                sorters: ['loc']/*,
-                proxy: {
-                    type: 'ajax',
-                    url: '/users.json',
-                    reader: {
-                        type: 'json',
-                        root: 'users'
-                    }
-                }*/
-            });
+            var grid = genGrid(store, cols, bar);
             
-            var grid = Ext.create('Ext.grid.Panel', {
-                cls: 'g-trainer',
-                tbar: bar,
-                store: store,
-                columns: columnModel,
-                features: [{ftype:'grouping'}],
-                selType: 'rowmodel',
-                plugins: [
-                    Ext.create('Ext.grid.plugin.RowEditing', {
-                        clicksToEdit: 2
-                    })
-                ],
-                listeners: {
-                    afterrender: {
-                        fn: function(grid){
-                            //adjust col header width to fit content for 3 first players
-                            var cols = grid.columns;
-                            var len = cols.length;
-                            setTimeout(function(){
-                                for(var i = 0; i < len; i++){
-                                    if(cols[i].textEl.getWidth() + 12 > cols[i].getWidth())// 12 => padding
-                                        cols[i].setWidth(cols[i].textEl.getWidth() + 20);// 20 => padding + place for triangle sort icon
-                                }
-                                grid.update();
-                            }, 0);
-                        }
-                    }
-                }/*,
-                style: 'border: 10px solid gray; border-radius: 25px;'*/
-            });
-            
-            Ext.create('Ext.container.Viewport', {
-                layout: 'fit',
-                items: [grid]
-            });
-            
-            /* add validateedit event to the grid */
-            grid.on('validateedit', function(editor, context){
-                updateTrainerInfos(editor, context);
-            });
-            
-            // add the bag button to the grid toolbar
-            initBag();
+            var vp = Ext.getCmp('vp');
+            vp.add(grid);
         }
+    });
+}
+
+function genStore(f, d){
+    return Ext.create('Ext.data.Store', {
+        fields: f,
+        data: d,
+        groupField: 'range',
+        sorters: ['loc']
+    });
+}
+
+function genGrid(st, cols, tbar){
+    if(st === undefined)
+        st = [];
+    
+    if(cols === undefined)
+        cols = [{text: '', dataIndex: ''}];
+    
+    if(tbar === undefined)
+        tbar = [];
+    
+    return Ext.create('Ext.grid.Panel', {
+        itemId: 'SkillsInfos',
+        cls: 'g-trainer',
+        bodyStyle: 'background-color: pink;',
+        tbar: tbar,
+        store: st,
+        columns: cols,
+        features: [{ftype:'grouping'}],
+        selType: 'rowmodel',
+        plugins: [
+            Ext.create('Ext.grid.plugin.RowEditing', {
+                clicksToEdit: 2
+            })
+        ],
+        listeners: {
+            afterrender: {
+                fn: function(grid){
+                    //adjust col header width to fit content for 3 first players
+                    var cols = grid.columns;
+                    var len = cols.length;
+                    setTimeout(function(){
+                        for(var i = 0; i < len; i++){
+                            if(cols[i].textEl.getWidth() + 12 > cols[i].getWidth())// 12 => padding
+                                cols[i].setWidth(cols[i].textEl.getWidth() + 20);// 20 => padding + place for triangle sort icon
+                        }
+                        grid.update();
+                    }, 0);
+                }
+            }
+        }/*,
+        style: 'border: 10px solid gray; border-radius: 25px;'*/
+    });
+}
+
+function genTBar(comboStoreFields){
+    return Ext.create('Ext.toolbar.Toolbar', {
+        dock: 'bottom',
+        cls: 'myToolbarGray',
+        height: 40,
+        items: [
+            {
+                text: 'Bag infos',
+                toggleGroup: 'bag',
+                enableToggle: true,
+                margin: '0 0 0 15px',
+                toggleHandler: function(btn, pressed){
+                    var grid = Ext.ComponentQuery.query('gridpanel')[0];
+                    if(grid.bagWindow){
+                        if (pressed){
+                            // show window
+                            grid.bagWindow.show();
+                        }
+                        else{
+                            // hide window
+                            grid.bagWindow.hide();
+                        }
+                    }
+                    else{
+                        grid.bagWindow = Ext.create('BagWindow');// ref to this button to togglehim when window is reduce
+                        grid.bagWindow.btn = btn;
+                        // add the grid
+                        grid.bagWindow.addGrid();
+                        grid.bagWindow.show();
+                    }
+                }
+            },
+            {
+                xtype: 'menubutton', //'button',
+                text: 'Gestion joueurs',
+                margin: "0 0 0 10px",
+                menu: {
+                    plain: true,
+                    items: [{
+                        text: "Ajouter un joueur",
+                        plain: true,
+                        style: 'text-align: center;',
+                        handler: function(btn){
+                            Ext.Msg.show({
+                                title: 'Ajouter un joueur',
+                                msg: 'Entrez un nom:',
+                                buttons: Ext.Msg.OKCANCEL,
+                                icon: Ext.Msg.QUESTION,
+                                prompt: true,
+                                fn: function(btnValue, textValue){
+                                    if(btnValue == "cancel")
+                                        return;
+                                    else
+                                        addPlayer(textValue);
+                                }
+                            });
+                        }
+                    }]
+                }
+            },
+            '->',
+            {xtype: 'label', text:"SKILLS TRAINERS INFOS", cls: 'title'},
+            '->',
+            {
+                xtype: 'combobox',
+                emptyText: 'Choose a column',
+                name: 'colFilter',
+                store: comboStoreFields,
+                forceSelection: true,
+                queryMode: 'local',
+                displayField: 'val',
+                valueField: 'val'
+            },
+            {
+                xtype: 'textfield',
+                emptyText: 'value to be filtered',
+                name: 'rowFilter',
+            },
+            {
+                xtype: 'button',
+                text: 'Filtrer',
+                handler: function(btn){
+                    var t1 = btn.up('toolbar').down('[name=colFilter]');
+                    var t1v = t1.getValue();
+                    //console.log(t1, t1v);
+                    if(t1v == null){
+                        return
+                    }
+                    var t2 = btn.up('toolbar').down('[name=rowFilter]');
+                    var t2v = t2.getValue();
+                    //console.log(t2, t2v);
+                    var st = btn.up('gridpanel').getStore();
+                    // first cler precedent filtering
+                    st.clearFilter();
+                    st.filter(t1v,t2v);
+                }
+            },
+            {
+                xtype: 'button',
+                text: 'clear filtering',
+                handler: function(btn){
+                    btn.up('gridpanel').getStore().clearFilter();
+                    btn.up('toolbar').down('[name=colFilter]').clearValue();
+                    btn.up('toolbar').down('[name=rowFilter]').reset();
+                },
+                margin: '0 15px 0 0'
+            }
+        ]
     });
 }
 
@@ -260,6 +280,7 @@ function genColumnModel(fields){
         v.toString = function(){return v.text};
         delete v.editor;
     });
+    
     columnModel.sort();
     return columnModel;
 }
@@ -397,4 +418,3 @@ function addPlayer(name){
     
 }
 
-var q = function(sel){return Ext.ComponentQuery.query(sel);};

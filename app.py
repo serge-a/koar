@@ -43,17 +43,11 @@ def gStore_SkillsTrained():
     
     datas = store['items'].values() # transform in a list
     
-    if 'store' in request.args or 'store' in request.form: # get or post
-        return json.dumps(datas)
     fields=[]
     for key in datas[0]:
         fields.append(key)
         #print key
-    if 'fields' in request.args or 'fields' in request.form: # get or post
-        d={}
-        d['metaData'] = {}
-        d['metaData']['fields'] = fields
-        return json.dumps(d)
+    
     d={}
     d["fields"] = fields
     d["datas"] = datas
