@@ -32,17 +32,17 @@ function initBag(){
                 if(v.text === "id"){
                     delete v.editor;
                     v.align = 'center';
-                    v.toString = function(){return 'ZZZZ0'}; // use by sort function for array of object!
+                    v.toString = function(){return 'zzzz0'}; // use by sort function for array of object!
                     return;
                 }
                 if(v.text === "loc"){
                     v.width = 105;
-                    v.toString = function(){return 'ZZZZ1'};
+                    v.toString = function(){return 'zzzz1'};
                     return;
                 }
                 if(v.text === "vendor"){
                     v.width = 125;
-                    v.toString = function(){return 'ZZZZ2'};
+                    v.toString = function(){return 'zzzz2'};
                     return;
                 }
                 if(v.text === "minfo"){
@@ -50,7 +50,7 @@ function initBag(){
                     //v.shrinkWrap = 2; // not working
                     v.minWidth = 354;
                     delete v['width'];
-                    v.toString = function(){return 'ZZZZ3'};
+                    v.toString = function(){return 'zzzz3'};
                     return;
                 }
                 v.renderer = check;

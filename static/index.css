@@ -47,6 +47,7 @@ background-color: #F3E1F1;
     background-image: -webkit-linear-gradient(top, #BCCFE5, #C5D6E7 48%, #95C4F4 52%, #9FC9F5);
 }
 
-.x-field-toolbar .x-form-text { /* field height not good */
+/* subitement c'est ok!?
+.x-field-toolbar .x-form-text { 
     height: 21px;
-}
+}*/

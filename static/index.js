@@ -1,94 +1,77 @@
 function init(){
     /* require flask and ext 4.2 */
+    Ext.define('MenuButton', {
+        extend: 'Ext.button.Button',
+        alias: 'widget.menubutton',
+        // pourrait ajouter mouseout et fade animation
+        listeners: {
+            'mouseover': {
+                fn: function(btn, e){
+                    btn.showMenu({btn: btn, e: e});
+                }
+            }
+        }
+    });
+    
+    /*sm = Ext.define('SkillsModel', {
+        proxy: {
+            type: 'ajax',
+            url: '/gStore_SkillsTrained?fields=1',
+            reader: {
+                type: 'json',
+                root: 'fields'
+            }
+        }
+    });*/
     
     Ext.Ajax.request({
         url: '/gStore_SkillsTrained',
         success: function(rep){
             var obj = JSON.parse(rep.responseText);
             //console.log(obj);
-            function check(v, metaData, rec, rowIndex, colIndex, st){
-                if(v===true){
-                    return '<img width="24" height="24" src="static/images/tick.png" />';
-                }
-                else{
-                    return '';
-                }
-            }
             
-            columnModel = [];
-            // create and set generic param for all col
-            for (var index = 0; index < obj.fields.length; index++){
-                columnModel.push({
-                    text: obj.fields[index],
-                    dataIndex: obj.fields[index],
-                    width: 43,
-                    editor: {
-                        xtype: 'textfield'
-                    }
-                });
-            }
-             // set specific param for specific col
-            columnModel.forEach(function(v, i, a){
-                if(v.text === "id"){
-                    v.hidden = true;
-                    delete v.editor;
-                    v.toString = function(){return 'ZZZZ0';}; // use by sort function for array of object!
-                    return;
-                }
-                if(v.text === "range"){
-                    v.width = 50;
-                    v.hidden = true;
-                    v.toString = function(){return 'ZZZZ1';};
-                    return;
-                }
-                if(v.text === "profession"){
-                    v.width = 81;
-                    v.filterable = true;
-                    v.toString = function(){return 'ZZZZ2';};
-                    return;
-                }
-                if(v.text === "loc"){
-                    v.width = 105;
-                    v.toString = function(){return 'ZZZZ3';};
-                    return;
-                }
-                if(v.text === "trainer"){
-                    v.width = 125;
-                    v.toString = function(){return 'ZZZZ4';};
-                    return;
-                }
-                if(v.text === "minfo"){
-                    v.flex = 1;
-                    delete v['width'];
-                    v.toString = function(){return 'ZZZZ5';}; // position it last
-                    return;
-                }
-                v.renderer = check;
-                v.xtype = "checkcolumn";
-                v.listeners = {
-                    checkchange: {
-                        fn: function(checkCol, rowIndex, checked){savePlayerState(checkCol, rowIndex, checked);}
-                    }
-                };
-                v.toString = function(){return v.text};
-                delete v.editor;
-            });
-            columnModel.sort();
+            var columnModel = genColumnModel(obj.fields); // only require fields to be generated
             
             // toolbar filter object
-            var stFields = obj.fields;
             var fields = [];
-            for(var i = 0; i < stFields.length; i++){
-                if(stFields[i] !== 'id' && stFields[i] !== 'range')
-                    fields.push(stFields[i]);
+            for(var i = 0; i < obj.fields.length; i++){
+                if(obj.fields[i] !== 'id' && obj.fields[i] !== 'range')
+                    fields.push(obj.fields[i]);
             }
-            
             
             var bar = Ext.create('Ext.toolbar.Toolbar', {
                 dock: 'bottom',
                 cls: 'myToolbarGray',
                 height: 40,
                 items: [
+                    {
+                        xtype: 'menubutton', //'button',
+                        text: 'Gestion joueurs',
+                        margin: "0 0 0 10px",
+                        menu: {
+                            plain: true,
+                            items: [{
+                                text: "Ajouter un joueur",
+                                plain: true,
+                                style: 'text-align: center;',
+                                handler: function(btn){
+                                    Ext.Msg.show({
+                                        title: 'Ajouter un joueur',
+                                        msg: 'Entrez un nom:',
+                                        buttons: Ext.Msg.OKCANCEL,
+                                        icon: Ext.Msg.QUESTION,
+                                        prompt: true,
+                                        fn: function(btnValue, textValue){
+                                            if(btnValue == "cancel")
+                                                return;
+                                            else
+                                                addPlayer(textValue);
+                                        }
+                                    });
+                                }
+                            }]
+                        }
+                    },
                     '->',
                     {xtype: 'label', text:"SKILLS TRAINERS INFOS", cls: 'title'},
                     '->',
@@ -141,12 +124,25 @@ function init(){
             });
             
             //console.log(columnModel);
+            Ext.define('Unmodel', {
+                extend: 'Ext.data.Model',
+                fields: obj.fields
+            });
             
             var store = Ext.create('Ext.data.Store', {
-                fields: obj.fields,
+                //fields: obj.fields,
+                model: 'Unmodel',
                 data: obj.datas,
                 groupField: 'range',
-                sorters: ['loc']
+                sorters: ['loc']/*,
+                proxy: {
+                    type: 'ajax',
+                    url: '/users.json',
+                    reader: {
+                        type: 'json',
+                        root: 'users'
+                    }
+                }*/
             });
             
             var grid = Ext.create('Ext.grid.Panel', {
@@ -194,8 +190,78 @@ function init(){
             initBag();
         }
     });
-    
-    
+}
+
+function check(v, metaData, rec, rowIndex, colIndex, st){
+    if(v===true){
+        return '<img width="24" height="24" src="static/images/tick.png" />';
+    }
+    else{
+        return '';
+    }
+}
+
+function genColumnModel(fields){
+    var columnModel = [];
+    // create and set generic param for all col
+    for (var index = 0; index < fields.length; index++){
+        columnModel.push({
+            text: fields[index],
+            dataIndex: fields[index],
+            width: 43,
+            editor: {
+                xtype: 'textfield'
+            }
+        });
+    }
+     // set specific param for specific col
+    columnModel.forEach(function(v, i, a){
+        if(v.text === "id"){
+            v.hidden = true;
+            delete v.editor;
+            v.toString = function(){return 'zzzz0';}; // use by sort function for array of object!
+            return;
+        }
+        if(v.text === "range"){
+            v.width = 50;
+            v.hidden = true;
+            v.toString = function(){return 'zzzz1';};
+            return;
+        }
+        if(v.text === "profession"){
+            v.width = 81;
+            v.filterable = true;
+            v.toString = function(){return 'zzzz2';};
+            return;
+        }
+        if(v.text === "loc"){
+            v.width = 105;
+            v.toString = function(){return 'zzzz3';};
+            return;
+        }
+        if(v.text === "trainer"){
+            v.width = 125;
+            v.toString = function(){return 'zzzz4';};
+            return;
+        }
+        if(v.text === "minfo"){
+            v.flex = 1;
+            delete v['width'];
+            v.toString = function(){return 'zzzz5';}; // position it last
+            return;
+        }
+        v.renderer = check;
+        v.xtype = "checkcolumn";
+        v.listeners = {
+            checkchange: {
+                fn: function(checkCol, rowIndex, checked){savePlayerState(checkCol, rowIndex, checked);}
+            }
+        };
+        v.toString = function(){return v.text};
+        delete v.editor;
+    });
+    columnModel.sort();
+    return columnModel;
 }
 
 function savePlayerState(checkCol, rowIndex, checked){
@@ -272,3 +338,63 @@ function updateTrainerInfos (editor, context){
         });
     }
 }
+
+function addPlayer(name){
+    // un minimun de verif
+    var invalidNames = ["__defineGetter__", "__defineSetter__", "__lookupGetter__", "__lookupSetter__", "constructor", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "propertyIsEnumerable", "toLocaleString", "toString", "valueOf"];
+    
+    var valid = true;
+    if (name in invalidNames){
+        valid = false;
+        Ext.Msg.show({
+            title: 'Nom invalid',
+            msg: [
+                'Les noms suivants ne sont pas accepté par mesure de sécurité et/ou compatibilité:',
+                "<br><br>",
+                invalidNames.join(", "),
+                "<br><br>",
+                "Voulez-vous entrez un autre nom?"
+            ].join(''),
+            buttons: Ext.Msg.YESNO,
+            icon: Ext.MessageBox.ERROR, //Ext.MessageBox.WARNING, // 
+            fn: function(val){
+                if(val == "cancel" || val == "no"){
+                    return;
+                }
+                else{
+                    Ext.Msg.show({
+                        title: 'Ajouter un joueur',
+                        msg: 'Entrez un nouveau nom:',
+                        buttons: Ext.Msg.OKCANCEL,
+                        icon: Ext.Msg.QUESTION,
+                        prompt: true,
+                        fn: function(btnValue, textValue){
+                            if(btnValue == "cancel")
+                                return;
+                            else
+                                addPlayer(textValue);
+                        }
+                    });
+                }
+            }
+        });
+    }
+    
+    if(valid){
+        // call the server and save the new name.
+        console.log(name);
+        Ext.Ajax.request({
+            url: "/addPlayer",
+            params:{
+                "name": name
+            },
+            success: function(rep){
+                var r = JSON.parse(rep.responseText);
+                console.log(r);
+            }
+        });
+    }
+    
+}
+
+var q = function(sel){return Ext.ComponentQuery.query(sel);};

@@ -1,3 +1,4 @@
+﻿# -*- coding: utf-8 -*-
 import os, sys, logging
 #logging.basicConfig(stream=sys.stderr)
 
@@ -19,7 +20,7 @@ def index():
     #return os.path.join(basePath, 'static/playersData.json')
     return render_template('index.html')
     
-@app.route('/gStore_SkillsTrained')
+@app.route('/gStore_SkillsTrained', methods=['GET', 'POST'])
 def gStore_SkillsTrained():
     
     fpTrainersData = open(os.path.join(basePath, 'static/trainersData.json'))
@@ -40,12 +41,19 @@ def gStore_SkillsTrained():
     for key in store['items']:
         store['items'][key]['id'] = key
     
-    datas = store['items'].values()
+    datas = store['items'].values() # transform in a list
+    
+    if 'store' in request.args or 'store' in request.form: # get or post
+        return json.dumps(datas)
     fields=[]
     for key in datas[0]:
         fields.append(key)
         #print key
-    
+    if 'fields' in request.args or 'fields' in request.form: # get or post
+        d={}
+        d['metaData'] = {}
+        d['metaData']['fields'] = fields
+        return json.dumps(d)
     d={}
     d["fields"] = fields
     d["datas"] = datas
@@ -177,6 +185,39 @@ def update_gStore_bagsInfo():
     fp.close()
     return "update"
     
+    
+@app.route('/addPlayer', methods=['POST'])
+def addPlayer():
+    playerName = request.form['name']
+    
+    #TODO:
+    # ajouter verification des nom, par exemple: 
+    #minimun vital 
+    invalidNames = ["__defineGetter__", "__defineSetter__", "__lookupGetter__", "__lookupSetter__", "constructor", "hasOwnProperty", "isPrototypeOf", "propertyIsEnumerable", "propertyIsEnumerable", "toLocaleString", "toString", "valueOf"]
+    if playerName in invalidNames:
+        d = {}
+        d["error"] = "Le nom choisit est invalid. Choisisez-vous en un autre."
+        d["invalidNames"] = invalidNames
+        return json.dumps(d)
+    # verify if player name already exist
+    fpPlayerDatas = open(os.path.join(basePath, 'static/playersData.json'))
+    datas = json.load(fpPlayerDatas)
+    fpPlayerDatas.close()
+    
+    # datas structure datas['items']['id']['playerName']
+    if playerName in datas['items']['0']:
+        return '{"error": "Ce nom de joueur est déjà utilisé."}'
+    else:
+        #save it to the file with default data [false]
+        for k in datas['items']:
+            datas['items'][k][playerName] = False
+            
+        fp = open(os.path.join(basePath, 'static/playersData.json'), 'w')
+        fp.write(json.dumps(datas,indent=4))
+        fp.close()
+        
+        return '{"success": "Player name: ' + playerName + ' has been added"}'
+            
     
 if __name__ == '__main__':
     app.debug = True
