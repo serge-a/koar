@@ -34,7 +34,9 @@ FEATURES:
 TODO:
 
 Gerer les joueurs:
-    Renommer
+    <ul>
+        <li>Renommer</li>
+    <ul>
     
 
 
