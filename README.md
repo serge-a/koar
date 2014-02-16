@@ -3,9 +3,12 @@ koar
 
 Petit project personelle pour le suivi de choses faites dans un jeux (Kingdom Of Amalur: Reckoning).
 
-Liste des trainers pour les Skills/Profession: nom profession, nom traineur, lieu, range du skill, ajouter/suprimer les joueurs que vou voulez suivre.
+Liste des trainers pour les Skills/Profession: nom profession, nom traineur, lieu, range du skill... 
 
-Liste emplacement d'upgrade pour les bags.
+
+Ajouter/suprimer les joueurs que vous voulez suivre.
+
+Liste les emplacements d'upgrade pour les bags.
 
 
 INSTALLATION:
