@@ -36,20 +36,26 @@ TODO:
 Gerer les joueurs:
     <ul>
         <li>Renommer</li>
-    <ul>
+    </ul>
     
 
 
 DONE:
+
 Gerer les infos trainers.
-    Save / update des infos de traineurs.
-    Save / update du status du joueur pour chaque skill.
-    
+<ul>
+    <li>Save / update des infos de traineurs.</li>
+    <li>Save / update du status du joueur pour chaque skill.</li>
+</ul>
+
 Gerer les joueurs:
-    Ajouter
-    Supprimer
-    
+<ul>
+    <li>Ajouter</li>
+    <li>Supprimer</li>
+</ul>
 
 Liste emplacements des bags upgrade (extension de place inventaire)
-    Save / update info des vendor bags
-    Save / update du status du joueur (s) pour chaque bags
+<ul>
+    <li>Save / update info des vendor bags</li>
+    <li>Save / update du status du joueur (s) pour chaque bags</li>
+</ul>
