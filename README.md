@@ -34,16 +34,20 @@ FEATURES:
 TODO:
 
 Gerer les joueurs:
-    Ajouter
     Renommer
-    Supprimer
+    
 
 
 DONE:
 Gerer les infos trainers.
-    Save / update des infos de traineurs
-    Save / update du status du joueur pour chaque skill
+    Save / update des infos de traineurs.
+    Save / update du status du joueur pour chaque skill.
     
+Gerer les joueurs:
+    Ajouter
+    Supprimer
+    
+
 Liste emplacements des bags upgrade (extension de place inventaire)
     Save / update info des vendor bags
     Save / update du status du joueur (s) pour chaque bags
