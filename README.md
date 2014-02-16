@@ -1,10 +1,12 @@
 koar
 ====
 
-petit project personelle pour le suivi de choses faites dans un jeux (Kingdom Of Amalur: Reckoning)
+Petit project personelle pour le suivi de choses faites dans un jeux (Kingdom Of Amalur: Reckoning).
 
-Liste des trainers pour les Skills/Profession: nom profession, nom traineur, lieu, range du skill, liste de jouer que vou voulez suivre.
-Liste emplacement d<upgrade pour les bags.
+Liste des trainers pour les Skills/Profession: nom profession, nom traineur, lieu, range du skill, ajouter/suprimer les joueurs que vou voulez suivre.
+
+Liste emplacement d'upgrade pour les bags.
+
 
 INSTALLATION:
 ==============================================
