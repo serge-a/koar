@@ -1,277 +1,277 @@
 {
     "items": {
-        "24": {
-            "trainer": "Enion Gaius", 
-            "loc": "Mel Senshir", 
-            "range": "7 To 9", 
-            "profession": "Mercantile", 
-            "minfo": ""
-        }, 
-        "25": {
-            "trainer": "", 
-            "loc": "", 
-            "range": "7 To 9*", 
-            "profession": "Mercantile", 
-            "minfo": "From the Legend of Dead Kel DLC only. A Varani ambassador staying at Gravehal Keep upon forging an alliance with a Varani trading fortress in Diplomacy."
-        }, 
-        "26": {
-            "trainer": "Ellova", 
-            "loc": "House of Ballads", 
+        "00": {
+            "loc": "City of Ysa", 
+            "minfo": "Lyceum Grove", 
+            "profession": "Alchemy", 
             "range": "0 To 3", 
-            "profession": "Persuasion", 
-            "minfo": ""
+            "trainer": "Jakasen*"
         }, 
-        "27": {
-            "trainer": "Magessa Ohr", 
-            "loc": "Rathir", 
-            "range": "0 To 3", 
-            "profession": "Persuasion", 
-            "minfo": "House Wyvyrn- Girfe, Upper City"
-        }, 
-        "20": {
-            "trainer": "Elya Madmyr", 
-            "loc": "Seawatch", 
-            "range": "7 To 9", 
-            "profession": "Lockpicking", 
-            "minfo": "Caeled Coast - west of Seawatch"
-        }, 
-        "21": {
-            "trainer": "Elayen Dark", 
-            "loc": "Star Camp", 
-            "range": "0 To 3", 
-            "profession": "Mercantile", 
-            "minfo": "Dalentarth: the tree between the 3 sub zone Glendaraa, Lorca-Rane adn the Sidhe"
-        }, 
-        "22": {
-            "trainer": "Anton Demian", 
-            "loc": "Alserund", 
-            "range": "0 To 3", 
-            "profession": "Mercantile", 
-            "minfo": "in northern Alserund"
-        }, 
-        "23": {
-            "trainer": "Eormen Gest", 
-            "loc": "Moon Camp", 
-            "range": "4 To 6", 
-            "profession": "Mercantile", 
-            "minfo": "in the Plains of Erathell"
-        }, 
-        "28": {
-            "trainer": "Templar Montainel", 
-            "loc": "Adessa", 
-            "range": "4 To 6", 
-            "profession": "Persuasion", 
-            "minfo": "at the Forum in Adessa's Isles"
-        }, 
-        "29": {
-            "trainer": "Caradas Hyne", 
-            "loc": "Mel Senshir", 
-            "range": "7 To 9", 
-            "profession": "Persuasion", 
-            "minfo": ""
-        }, 
-        "1": {
-            "trainer": "Molly Janick*", 
+        "01": {
             "loc": "Emaire", 
+            "minfo": "Blue Bear Tavern in Emaire - western Forsaken Plain", 
+            "profession": "Alchemy", 
             "range": "0 To 3", 
-            "profession": "Alchemy", 
-            "minfo": "Blue Bear Tavern in Emaire - western Forsaken Plain"
+            "trainer": "Molly Janick*"
         }, 
-        "0": {
-            "trainer": "Jakasen*", 
-            "loc": "City of Ysa", 
-            "range": "0 To 3", 
-            "profession": "Alchemy", 
-            "minfo": "Lyceum Grove"
-        }, 
-        "3": {
-            "trainer": "Conni", 
-            "loc": "Seawatch", 
-            "range": "7 To 9", 
-            "profession": "Alchemy", 
-            "minfo": "initiate Ghosts of Seawatch, free her from Castle Ansilla, then head back to Seawatch"
-        }, 
-        "2": {
-            "trainer": "Savant Red Thombrum", 
+        "02": {
             "loc": "Rathir", 
-            "range": "4 To 6", 
+            "minfo": "Upper City in the Scholia Arcana academy in Rathir", 
             "profession": "Alchemy", 
-            "minfo": "Upper City in the Scholia Arcana academy in Rathir"
+            "range": "4 To 6", 
+            "trainer": "Savant Red Thombrum"
         }, 
-        "5": {
-            "trainer": "Halder Rodric", 
-            "loc": "Shieldring Keep", 
-            "range": "0 To 3", 
-            "profession": "Blacksmithing", 
-            "minfo": ""
+        "03": {
+            "loc": "Seawatch", 
+            "minfo": "initiate Ghosts of Seawatch, free her from Castle Ansilla, then head back to Seawatch", 
+            "profession": "Alchemy", 
+            "range": "7 To 9", 
+            "trainer": "Conni"
         }, 
-        "4": {
-            "trainer": "", 
+        "04": {
             "loc": "", 
-            "range": "7 To 9*", 
+            "minfo": "From the Legend of Dead Kel DLC only. A Gnome staying at Gravehal Keep after Zefwyn Lan finds him on the Gnomish Trireme in Scouting_Mission.", 
             "profession": "Alchemy", 
-            "minfo": "From the Legend of Dead Kel DLC only. A Gnome staying at Gravehal Keep after Zefwyn Lan finds him on the Gnomish Trireme in Scouting_Mission."
+            "range": "7 To 9*", 
+            "trainer": ""
         }, 
-        "7": {
-            "trainer": "Efyr Dynnwel", 
-            "loc": "Ironfast Keep", 
-            "range": "4 To 6", 
+        "05": {
+            "loc": "Shieldring Keep", 
+            "minfo": "", 
             "profession": "Blacksmithing", 
-            "minfo": " in Menetyre; you need to complete A Master's Touch"
+            "range": "0 To 3", 
+            "trainer": "Halder Rodric"
         }, 
-        "6": {
-            "trainer": "Holte Frenn*", 
+        "06": {
             "loc": "City of Ysa", 
-            "range": "0 To 3", 
+            "minfo": "United Merchants Delegation", 
             "profession": "Blacksmithing", 
-            "minfo": "United Merchants Delegation"
-        }, 
-        "9": {
-            "trainer": "Arnick Arduna", 
-            "loc": "Gorhart", 
             "range": "0 To 3", 
-            "profession": "Detect Hidden", 
-            "minfo": "Gorhart Inn"
+            "trainer": "Holte Frenn*"
         }, 
-        "8": {
-            "trainer": "Ragnar Senn", 
-            "loc": "Mel Senshir", 
-            "range": "7 To 9", 
+        "07": {
+            "loc": "Ironfast Keep", 
+            "minfo": " in Menetyre; you need to complete A Master's Touch", 
             "profession": "Blacksmithing", 
-            "minfo": ""
-        }, 
-        "12": {
-            "trainer": "Ney Caslan", 
-            "loc": "Mel Senshir", 
-            "range": "7 To 9", 
-            "profession": "Detect Hidden", 
-            "minfo": ""
-        }, 
-        "11": {
-            "trainer": "", 
-            "loc": "Sun Camp", 
             "range": "4 To 6", 
+            "trainer": "Efyr Dynnwel"
+        }, 
+        "08": {
+            "loc": "Mel Senshir", 
+            "minfo": "", 
+            "profession": "Blacksmithing", 
+            "range": "7 To 9", 
+            "trainer": "Ragnar Senn"
+        }, 
+        "09": {
+            "loc": "Gorhart", 
+            "minfo": "Gorhart Inn", 
             "profession": "Detect Hidden", 
-            "minfo": "in Detyre; you may locate the trainer there or in the nearby town of Whitestone (Thirsty Wench Tavern), after completing Thick as Thieves"
+            "range": "0 To 3", 
+            "trainer": "Arnick Arduna"
         }, 
         "10": {
-            "trainer": "Ambassador Odvar*", 
             "loc": "City of Ysa", 
-            "range": "0 To 3", 
+            "minfo": "in Embassy Hall", 
             "profession": "Detect Hidden", 
-            "minfo": "in Embassy Hall"
+            "range": "0 To 3", 
+            "trainer": "Ambassador Odvar*"
+        }, 
+        "11": {
+            "loc": "Sun Camp", 
+            "minfo": "in Detyre; you may locate the trainer there or in the nearby town of Whitestone (Thirsty Wench Tavern), after completing Thick as Thieves", 
+            "profession": "Detect Hidden", 
+            "range": "4 To 6", 
+            "trainer": ""
+        }, 
+        "12": {
+            "loc": "Mel Senshir", 
+            "minfo": "", 
+            "profession": "Detect Hidden", 
+            "range": "7 To 9", 
+            "trainer": "Ney Caslan"
         }, 
         "13": {
-            "trainer": "Eric Porthe", 
             "loc": "Adessa", 
+            "minfo": "at the Adessa Walls or Adessa's Isles; he may be found in the streets, the Domus Politica, or the Forum depending on the time of day, and how far you've progressed in the main quest", 
+            "profession": "Dispelling", 
             "range": "0 To 3", 
-            "profession": "Dispelling", 
-            "minfo": "at the Adessa Walls or Adessa's Isles; he may be found in the streets, the Domus Politica, or the Forum depending on the time of day, and how far you've progressed in the main quest"
-        }, 
-        "38": {
-            "trainer": "", 
-            "loc": "", 
-            "range": "7 To 9*", 
-            "profession": "Stealth", 
-            "minfo": "From the Legend_of_Dead_Kel DLC only.  Send Zefwyn Lan to scout the Traveler Sloop/Merchant Vessel in Scouting_Mission - Marten Strand rescued."
-        }, 
-        "15": {
-            "trainer": "Artan Caid", 
-            "loc": "Rathir", 
-            "range": "4 To 6", 
-            "profession": "Dispelling", 
-            "minfo": "Upper City in the Scholia Arcana academy"
+            "trainer": "Eric Porthe"
         }, 
         "14": {
-            "trainer": "Saramer", 
             "loc": "City of Ysa", 
-            "range": "0 To 3", 
+            "minfo": "The Trellis, in the Ballads Sanctuary", 
             "profession": "Dispelling", 
-            "minfo": "The Trellis, in the Ballads Sanctuary"
-        }, 
-        "17": {
-            "trainer": "Throvald Ulfsson", 
-            "loc": "Lorca-Rane", 
             "range": "0 To 3", 
-            "profession": "Lockpicking", 
-            "minfo": "in southeastern"
+            "trainer": "Saramer"
+        }, 
+        "15": {
+            "loc": "Rathir", 
+            "minfo": "Upper City in the Scholia Arcana academy", 
+            "profession": "Dispelling", 
+            "range": "4 To 6", 
+            "trainer": "Artan Caid"
         }, 
         "16": {
-            "trainer": "Dionaeach", 
             "loc": "House of Sorrows", 
-            "range": "7 To 9", 
+            "minfo": "requires completion of The Sorrows Call, but before completing Voices of the Dead by killing Cadoroc", 
             "profession": "Dispelling", 
-            "minfo": "requires completion of The Sorrows Call, but before completing Voices of the Dead by killing Cadoroc"
+            "range": "7 To 9", 
+            "trainer": "Dionaeach"
         }, 
-        "19": {
-            "trainer": "Narity Wyle", 
-            "loc": "Adessa", 
-            "range": "4 To 6", 
+        "17": {
+            "loc": "Lorca-Rane", 
+            "minfo": "in southeastern", 
             "profession": "Lockpicking", 
-            "minfo": "in Hospitalis Quarters - Adessa Walls"
+            "range": "0 To 3", 
+            "trainer": "Throvald Ulfsson"
         }, 
         "18": {
-            "trainer": "Tefroy Tarion", 
             "loc": "Tirin's Rest", 
-            "range": "0 To 3", 
+            "minfo": " in Galafor; events in Lock and Key must be completed", 
             "profession": "Lockpicking", 
-            "minfo": " in Galafor; events in Lock and Key must be completed"
-        }, 
-        "31": {
-            "trainer": "Savant Raina Njorn", 
-            "loc": "City of Ysa", 
             "range": "0 To 3", 
-            "profession": "Sagecraft", 
-            "minfo": "Delving Hall: Go into the building to the left and accept the quest to join the Scholia Arcana. They will give you the key to next door"
+            "trainer": "Tefroy Tarion"
+        }, 
+        "19": {
+            "loc": "Adessa", 
+            "minfo": "in Hospitalis Quarters - Adessa Walls", 
+            "profession": "Lockpicking", 
+            "range": "4 To 6", 
+            "trainer": "Narity Wyle"
+        }, 
+        "20": {
+            "loc": "Seawatch", 
+            "minfo": "Caeled Coast - west of Seawatch", 
+            "profession": "Lockpicking", 
+            "range": "7 To 9", 
+            "trainer": "Elya Madmyr"
+        }, 
+        "21": {
+            "loc": "Star Camp", 
+            "minfo": "Dalentarth: the tree between the 3 sub zone Glendaraa, Lorca-Rane adn the Sidhe", 
+            "profession": "Mercantile", 
+            "range": "0 To 3", 
+            "trainer": "Elayen Dark"
+        }, 
+        "22": {
+            "loc": "Alserund", 
+            "minfo": "in northern Alserund", 
+            "profession": "Mercantile", 
+            "range": "0 To 3", 
+            "trainer": "Anton Demian"
+        }, 
+        "23": {
+            "loc": "Moon Camp", 
+            "minfo": "in the Plains of Erathell", 
+            "profession": "Mercantile", 
+            "range": "4 To 6", 
+            "trainer": "Eormen Gest"
+        }, 
+        "24": {
+            "loc": "Mel Senshir", 
+            "minfo": "", 
+            "profession": "Mercantile", 
+            "range": "7 To 9", 
+            "trainer": "Enion Gaius"
+        }, 
+        "25": {
+            "loc": "", 
+            "minfo": "From the Legend of Dead Kel DLC only. A Varani ambassador staying at Gravehal Keep upon forging an alliance with a Varani trading fortress in Diplomacy.", 
+            "profession": "Mercantile", 
+            "range": "7 To 9*", 
+            "trainer": ""
+        }, 
+        "26": {
+            "loc": "House of Ballads", 
+            "minfo": "", 
+            "profession": "Persuasion", 
+            "range": "0 To 3", 
+            "trainer": "Ellova"
+        }, 
+        "27": {
+            "loc": "Rathir", 
+            "minfo": "House Wyvyrn- Girfe, Upper City", 
+            "profession": "Persuasion", 
+            "range": "0 To 3", 
+            "trainer": "Magessa Ohr"
+        }, 
+        "28": {
+            "loc": "Adessa", 
+            "minfo": "at the Forum in Adessa's Isles", 
+            "profession": "Persuasion", 
+            "range": "4 To 6", 
+            "trainer": "Templar Montainel"
+        }, 
+        "29": {
+            "loc": "Mel Senshir", 
+            "minfo": "", 
+            "profession": "Persuasion", 
+            "range": "7 To 9", 
+            "trainer": "Caradas Hyne"
         }, 
         "30": {
-            "trainer": "Viscount Setter", 
             "loc": "City of Ysa", 
-            "range": "0 To 3", 
+            "minfo": "gardens or The Font", 
             "profession": "Sagecraft", 
-            "minfo": "gardens or The Font"
-        }, 
-        "37": {
-            "trainer": "Tircnerani", 
-            "loc": "Dark Glow Caverns", 
-            "range": "7 To 9", 
-            "profession": "Stealth", 
-            "minfo": "south of Ariad Camp in Shadow Pass"
-        }, 
-        "36": {
-            "trainer": "Borm of Bowstings", 
-            "loc": "Adessa", 
-            "range": "4 To 6", 
-            "profession": "Stealth", 
-            "minfo": "in Hospitalis Quarters in Adessa Walls"
-        }, 
-        "35": {
-            "trainer": "Inthaels Scyld", 
-            "loc": "Moon Camp", 
             "range": "0 To 3", 
-            "profession": "Stealth", 
-            "minfo": "in Plains of Erathell"
+            "trainer": "Viscount Setter"
         }, 
-        "34": {
-            "trainer": "Hiroen Karet", 
-            "loc": "Star Camp", 
-            "range": "0 To 3", 
-            "profession": "Stealth", 
-            "minfo": "Dalentarth: the tree between the 3 sub zone Glendaraa, Lorca-Rane adn the Sidhe"
-        }, 
-        "33": {
-            "trainer": "Liordran", 
-            "loc": "The Keening", 
-            "range": "7 To 9", 
+        "31": {
+            "loc": "City of Ysa", 
+            "minfo": "Delving Hall: Go into the building to the left and accept the quest to join the Scholia Arcana. They will give you the key to next door", 
             "profession": "Sagecraft", 
-            "minfo": "at Balor's Crossing"
+            "range": "0 To 3", 
+            "trainer": "Savant Raina Njorn"
         }, 
         "32": {
-            "trainer": "Savant Itran Sconn", 
             "loc": "Rathir", 
-            "range": "4 To 6", 
+            "minfo": "Upper City in the Scholia Arcana academy", 
             "profession": "Sagecraft", 
-            "minfo": "Upper City in the Scholia Arcana academy"
+            "range": "4 To 6", 
+            "trainer": "Savant Itran Sconn"
+        }, 
+        "33": {
+            "loc": "The Keening", 
+            "minfo": "at Balor's Crossing", 
+            "profession": "Sagecraft", 
+            "range": "7 To 9", 
+            "trainer": "Liordran"
+        }, 
+        "34": {
+            "loc": "Star Camp", 
+            "minfo": "Dalentarth: the tree between the 3 sub zone Glendaraa, Lorca-Rane adn the Sidhe", 
+            "profession": "Stealth", 
+            "range": "0 To 3", 
+            "trainer": "Hiroen Karet"
+        }, 
+        "35": {
+            "loc": "Moon Camp", 
+            "minfo": "in Plains of Erathell", 
+            "profession": "Stealth", 
+            "range": "0 To 3", 
+            "trainer": "Inthaels Scyld"
+        }, 
+        "36": {
+            "loc": "Adessa", 
+            "minfo": "in Hospitalis Quarters in Adessa Walls", 
+            "profession": "Stealth", 
+            "range": "4 To 6", 
+            "trainer": "Borm of Bowstings"
+        }, 
+        "37": {
+            "loc": "Dark Glow Caverns", 
+            "minfo": "south of Ariad Camp in Shadow Pass", 
+            "profession": "Stealth", 
+            "range": "7 To 9", 
+            "trainer": "Tircnerani"
+        }, 
+        "38": {
+            "loc": "", 
+            "minfo": "From the Legend_of_Dead_Kel DLC only.  Send Zefwyn Lan to scout the Traveler Sloop/Merchant Vessel in Scouting_Mission - Marten Strand rescued.", 
+            "profession": "Stealth", 
+            "range": "7 To 9*", 
+            "trainer": ""
         }
     }
 }

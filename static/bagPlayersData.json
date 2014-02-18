@@ -1,34 +1,34 @@
 {
     "items": {
-        "1": {
-            "PoisonIvy": true, 
-            "Boo": false, 
-            "Mage": true
-        }, 
         "0": {
-            "PoisonIvy": false, 
             "Boo": false, 
-            "Mage": true
+            "Mage": true, 
+            "PoisonIvy": false
         }, 
-        "3": {
-            "PoisonIvy": false, 
+        "1": {
             "Boo": false, 
-            "Mage": true
+            "Mage": true, 
+            "PoisonIvy": true
         }, 
         "2": {
-            "PoisonIvy": false, 
             "Boo": false, 
-            "Mage": true
+            "Mage": true, 
+            "PoisonIvy": false
         }, 
-        "5": {
-            "PoisonIvy": false, 
+        "3": {
             "Boo": false, 
-            "Mage": false
+            "Mage": true, 
+            "PoisonIvy": false
         }, 
         "4": {
-            "PoisonIvy": false, 
             "Boo": false, 
-            "Mage": true
+            "Mage": true, 
+            "PoisonIvy": false
+        }, 
+        "5": {
+            "Boo": false, 
+            "Mage": false, 
+            "PoisonIvy": false
         }
     }
 }

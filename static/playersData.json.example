@@ -2,22 +2,22 @@
     "items": {
         "00": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "01": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "02": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "03": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "04": {
@@ -27,58 +27,58 @@
         }, 
         "05": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "06": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "07": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "08": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "09": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "10": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "11": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "12": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "13": {
             "Boo": false, 
             "Mage": false, 
-            "PoisonIvy": true
+            "PoisonIvy": false
         }, 
         "14": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "15": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "16": {
             "Boo": false, 
@@ -87,42 +87,42 @@
         }, 
         "17": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "18": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "19": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "20": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "21": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "22": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "23": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "24": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "25": {
@@ -132,62 +132,62 @@
         }, 
         "26": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "27": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "28": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "29": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "30": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "31": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "32": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "33": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "34": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "35": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "36": {
             "Boo": false, 
-            "Mage": true, 
-            "PoisonIvy": true
+            "Mage": false, 
+            "PoisonIvy": false
         }, 
         "37": {
             "Boo": false, 
-            "Mage": true, 
+            "Mage": false, 
             "PoisonIvy": false
         }, 
         "38": {

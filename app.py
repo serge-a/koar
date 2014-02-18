@@ -11,13 +11,10 @@ app = Flask(__name__)
 
 basePath = os.path.dirname(os.path.realpath(__file__))
 
-
 @app.route('/')
 @app.route('/index')
 @app.route('/index.html')
 def index():
-    
-    #return os.path.join(basePath, 'static/playersData.json')
     return render_template('index.html')
     
 @app.route('/gStore_SkillsTrained', methods=['GET', 'POST'])
@@ -27,9 +24,25 @@ def gStore_SkillsTrained():
     jsonTrainersInfos = json.load(fpTrainersData)
     fpTrainersData.close()
     
-    fpPlayersData = open(os.path.join(basePath, 'static/playersData.json'))
-    jsonPlayersInfos = json.load(fpPlayersData)
-    fpPlayersData.close()
+    try:
+        fpPlayersData = open(os.path.join(basePath, 'static/playersData.json'))
+        # need a file not empty and with valid json
+        jsonPlayersInfos = json.load(fpPlayersData)
+        fpPlayersData.close()
+    except ValueError as e:
+        # case json error, empty file?
+        if "No JSON object could be decoded" in e:
+        #gen base data
+            base = {}
+            base['items'] = {}
+            for id in range(0,38):
+                if id < 10:
+                    base['items']["0" + str(id)] = {"playerName": False}
+                else:
+                    base['items'][str(id)] = {"playerName": False}
+            
+            jsonPlayersInfos = base
+    
     
     #combine the 2 data
     
@@ -103,7 +116,7 @@ def save_gStore_SkillsTrained():
     data['items'][id][name] = val
     
     fp = open(os.path.join(basePath, 'static/playersData.json'), 'w')
-    fp.write(json.dumps(data,indent=4))
+    fp.write(json.dumps(data,indent=4,sort_keys=True))
     fp.close()
     return "Saved"
     
@@ -126,7 +139,7 @@ def update_gStore_trainerInfo():
     jsonTrainersInfos['items'][id]['minfo'] = minfo
     
     fp = open(os.path.join(basePath, 'static/trainersData.json'), 'w')
-    fp.write(json.dumps(jsonTrainersInfos,indent=4))
+    fp.write(json.dumps(jsonTrainersInfos,indent=4,sort_keys=True))
     fp.close()
     return "update"
     
@@ -148,7 +161,7 @@ def save_gStore_bagPlayersInfos():
     data['items'][id][name] = val
     
     fp = open(os.path.join(basePath, 'static/bagPlayersData.json'), 'w')
-    fp.write(json.dumps(data,indent=4))
+    fp.write(json.dumps(data,indent=4,sort_keys=True))
     fp.close()
     return "Saved"
     
@@ -169,7 +182,7 @@ def update_gStore_bagsInfo():
     jsonBagVendorsInfos['items'][id]['minfo'] = minfo
     
     fp = open(os.path.join(basePath, 'static/bagVendorsData.json'), 'w')
-    fp.write(json.dumps(jsonBagVendorsInfos,indent=4))
+    fp.write(json.dumps(jsonBagVendorsInfos,indent=4,sort_keys=True))
     fp.close()
     return "update"
     
