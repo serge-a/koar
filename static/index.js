@@ -110,7 +110,11 @@ function genGrid(st, cols, tbar){
                     if(grid.bagWindow)
                        grid.bagWindow.destroy();
                 }
+            },
+            validateedit: {
+                fn: updateTrainerInfos
             }
+            
         }
     });
 }
@@ -327,7 +331,8 @@ function genColumnModel(fields){
             }
         };
         v.toString = function(){return v.text};
-        v.editor.xtype = 'displayfield';
+        //v.editor.xtype = 'displayfield';
+        delete v.editor;
     });
     
     columnModel.sort();

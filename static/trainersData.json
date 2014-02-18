@@ -96,7 +96,7 @@
             "loc": "Rathir", 
             "range": "4 To 6", 
             "profession": "Alchemy", 
-            "minfo": "the Scholia Arcana academy in Rathir"
+            "minfo": "Upper City in the Scholia Arcana academy in Rathir"
         }, 
         "5": {
             "trainer": "Halder Rodric", 
@@ -140,12 +140,12 @@
             "profession": "Blacksmithing", 
             "minfo": ""
         }, 
-        "38": {
-            "trainer": "", 
-            "loc": "", 
-            "range": "7 To 9*", 
-            "profession": "Stealth", 
-            "minfo": "From the Legend_of_Dead_Kel DLC only.  Send Zefwyn Lan to scout the Traveler Sloop/Merchant Vessel in Scouting_Mission - Marten Strand rescued."
+        "12": {
+            "trainer": "Ney Caslan", 
+            "loc": "Mel Senshir", 
+            "range": "7 To 9", 
+            "profession": "Detect Hidden", 
+            "minfo": ""
         }, 
         "11": {
             "trainer": "", 
@@ -168,19 +168,19 @@
             "profession": "Dispelling", 
             "minfo": "at the Adessa Walls or Adessa's Isles; he may be found in the streets, the Domus Politica, or the Forum depending on the time of day, and how far you've progressed in the main quest"
         }, 
-        "12": {
-            "trainer": "Ney Caslan", 
-            "loc": "Mel Senshir", 
-            "range": "7 To 9", 
-            "profession": "Detect Hidden", 
-            "minfo": ""
+        "38": {
+            "trainer": "", 
+            "loc": "", 
+            "range": "7 To 9*", 
+            "profession": "Stealth", 
+            "minfo": "From the Legend_of_Dead_Kel DLC only.  Send Zefwyn Lan to scout the Traveler Sloop/Merchant Vessel in Scouting_Mission - Marten Strand rescued."
         }, 
         "15": {
             "trainer": "Artan Caid", 
             "loc": "Rathir", 
             "range": "4 To 6", 
             "profession": "Dispelling", 
-            "minfo": "at the Scholia Arcana academy"
+            "minfo": "Upper City in the Scholia Arcana academy"
         }, 
         "14": {
             "trainer": "Saramer", 
@@ -271,7 +271,7 @@
             "loc": "Rathir", 
             "range": "4 To 6", 
             "profession": "Sagecraft", 
-            "minfo": "at the Scholia Arcana academy"
+            "minfo": "Upper City in the Scholia Arcana academy"
         }
     }
 }
